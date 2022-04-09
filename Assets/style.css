@@ -1,0 +1,13 @@
+*{
+    box-sizing: border-box;
+}
+body {
+    color: #fff;
+    background-color: #222;
+}
+.hero {
+color: #fff;
+background-color: rgba(43, 116, 189, 0.333);
+padding: 5% 5%;
+
+}
