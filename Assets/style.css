@@ -2,7 +2,7 @@
     --main-color: #0a153e;
     --seco-color: #212d52;
     --contr-color: #6c33fb ;
-    --box-color: #1babfc;
+    --box-color: #0b5ed7;
 }
 
 *{
@@ -33,10 +33,10 @@ border-radius: 12px;
 
 .col-sm-4{
     padding: 3% 2% 5% 2%;
-    border-radius: 12px;
     background-color: var(--seco-color);
     display: block;
-    
+    border: 8px solid var(--main-color);
+    border-radius: 32px;
 }
 
 .btn-primary{
@@ -50,8 +50,23 @@ background-color: var(--contr-color);
 }
 
 /* Rigt Column Styles, Specific City */
+.col-sm-8{
+    display: block;
+    background-color: var(--seco-color);
+    padding: 3% 2% 5% 2%;
+    border-radius: 32px;
+    border: 8px solid var(--main-color);
+    
+}
+
+#uvIndex{
+    background-color: var(--contr-color);
+    padding: 0.4%;
+}
+/* Week Forecast Tables */
 
 .col{
-    background-color: #1babfc;
-    border:  2px solid #fff;
+    background-color: var(--box-color);
+    border-left:  6px solid var(--seco-color);
+    border-right:  6px solid var(--seco-color);
 }
