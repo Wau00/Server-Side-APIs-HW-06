@@ -1,6 +1,8 @@
 // Document Variables //
 var cityFormEl = document.querySelector('#cityFormEl');
 var cityInputEl = document.querySelector('#button-addon2');
+var weatherInfoEl = document.querySelector('#weatherInfo');
+var citySearchInput = document.querySelector('#city');
 var cityButtonEl = document.querySelector('#cities-button');
 
 // Setting Todays and Weekly Days //
@@ -27,11 +29,11 @@ var formSubmit = function(event){
     }else{
         alert("Please select a city");
     }
-    
+
 }
 
 // APIs  calls for Weather Attributes //
-var localWeather = function(cities){
+var localWeather = function(cities){ss
     var apikey = "e70a4a2e44d64a3b86dcb3ffc5b9cf15" ;
     var queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${cities}&units=imperial&appid=${apiKey}`
 
@@ -41,4 +43,13 @@ var localWeather = function(cities){
         });
     })
 };
+
+var displayWeatherData = function(weather, searchCities){
+$('#weatherInfo').text();
+$("#city").text(searchCities);
+
+}
+
+console.log(weatherInfo);
+console.log(city);
 
