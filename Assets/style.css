@@ -1,13 +1,52 @@
+:root{
+    --main-color: #0a153e;
+    --seco-color: #212d52;
+    --contr-color: #6c33fb ;
+    --box-color: #1babfc;
+}
+
 *{
     box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
 }
+/* header styles */
+
 body {
     color: #fff;
-    background-color: #222;
+    background-color: var(--main-color);
 }
 .hero {
 color: #fff;
-background-color: rgba(43, 116, 189, 0.333);
+text-align: center;
 padding: 5% 5%;
+}
+
+.title {
+background-color: var(--seco-color);
+padding: 4% 4%;
+border-radius: 12px;
 
 }
+
+/* Left Column Styles, Search for a City */
+
+.col-sm-4{
+    padding: 3% 2% 5% 2%;
+    border-radius: 12px;
+    background-color: var(--seco-color);
+    display: block;
+    
+}
+
+.btn-primary{
+text-align: left;
+border-color: var(--contr-color);
+background-color: var(--contr-color);
+}
+
+.btn-outline-secondary{
+    background-color: var(--contr-color);
+}
+
+/* Rigt Column Styles, Specific City */
