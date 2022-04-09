@@ -50,3 +50,8 @@ background-color: var(--contr-color);
 }
 
 /* Rigt Column Styles, Specific City */
+
+.col{
+    background-color: #1babfc;
+    border:  2px solid #fff;
+}
