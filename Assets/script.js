@@ -14,11 +14,8 @@ $("#day-forecast4").text(moment().add(4, 'day').format("M/DD/YYYY"));
 $("#day-forecast5").text(moment().add(5, 'day').format("M/DD/YYYY"));
 
 //APIs Key for https://openweathermap.org/api //
- var apikey = "e70a4a2e44d64a3b86dcb3ffc5b9cf15" ;
-    console.log(apikey);
-// example https://api.openweathermap.org/data/2.5/weather?q=London&appid=e70a4a2e44d64a3b86dcb3ffc5b9cf15&units=imperial //
-var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=${cities}&appid=${apiKey}=imperial&units=imperial"
-console.log(queryURL);
+
+
 // Main function//
 
 var formSubmit = function(event){
@@ -26,6 +23,7 @@ var formSubmit = function(event){
     var cities = cityInputEl.value.trim();
     if(cities){
         localWeather(cities);
+        cityInputEl.value ="";
     }else{
         alert("Please select a city");
     }
@@ -33,10 +31,11 @@ var formSubmit = function(event){
 }
 
 // APIs  calls for Weather Attributes //
-var localWeather = function(cities){ss
-    var apikey = "e70a4a2e44d64a3b86dcb3ffc5b9cf15" ;
-    var queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${cities}&units=imperial&appid=${apiKey}`
+var localWeather = function(cities){
+    var theKey = "e70a4a2e44d64a3b86dcb3ffc5b9cf15" ;
+    var queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${cities}&units=imperial&appid=${theKey}`
 
+    console.log(queryURL);
     fetch(queryURL).then(function(response){
         response.json().then(function(data){
             displayForm(data, cities);
@@ -44,11 +43,18 @@ var localWeather = function(cities){ss
     })
 };
 
-var displayWeatherData = function(weather, searchCities){
-$('#weatherInfo').text();
-$("#city").text(searchCities);
+var displayForm = function(weather, searchCities){
+weatherInfoEl.textContent="";
+citySearchInput.textContent=searchCities;
+
 
 }
+
+
+
+
+
+cityFormEl.addEventListener("click", formSubmit);
 
 console.log(weatherInfo);
 console.log(city);
