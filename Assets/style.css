@@ -59,7 +59,12 @@ background-color: var(--contr-color);
     
 }
 
-#uvIndex{
+
+p{
+    font-size: 18px
+}
+
+.live-uvIndex{
     background-color: var(--contr-color);
     padding: 0.4%;
 }
