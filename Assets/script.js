@@ -7,6 +7,8 @@ $("#day-forecast4").text(moment().add(4, 'day').format("M/DD/YYYY"));
 $("#day-forecast5").text(moment().add(5, 'day').format("M/DD/YYYY"));
 
 
+
+
 $(document).ready(function(){
 getHistory()
 $('#submitWeather').click(function(){
@@ -30,8 +32,10 @@ $('#submitWeather').click(function(){
                 var lat = data.coord.lat
                 var lon = data.coord.lon
 
-                getFiveDay(lat, lon)
-                // $('.card-properties').html(widget);
+                getuvIndex(lat, lon)
+
+                getFiveDays(lat, lon)
+                
                 $('#button-city').val('');
 
                 
@@ -71,15 +75,18 @@ function getHistory() {
 }
 
 function show(data){
+  
+    $('.iconWeather').attr('src','') +
     $('.city-name').text(data.name)+
+    $('.iconWeather').text(data.weather.icon)+
+    $('.live-temperature').text(data.main.temp) +
+    $('.live-humidity').text(data.main.humidity) +
+    $('.live-wind').text(data.wind.speed);
+    
+    
+}
 
-            "<p style='text-transform: uppercase;'>"+data.weather[0].description+"<img src=http://openweathermap.org/img/wn/"+data.weather[0].icon+".png></img> </p>" +
-            $('.live-temperature').text(data.main.temp) +
-            "<p> Humidity : "+data.main.humidity+" % </p>" +
-            "<p> Windspeed : "+data.wind.speed+ " mph </p>";
-};
-
-function getFiveDay(lat, lon) {
+function getuvIndex(lat, lon) {
     $.ajax({
         url: `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=e70a4a2e44d64a3b86dcb3ffc5b9cf15&units=imperial`,
         type: "GET" ,
@@ -89,15 +96,48 @@ function getFiveDay(lat, lon) {
                 }
             },
         dataType: "json",
-        success: function (fiveData){
-            console.log(fiveData);
-           
-            
-            
+        success: function (uviData){
+            console.log(uviData);
+            $(".live-uvi").text(uviData.current.uvi);  
+
         }
     });
 
 }
+
+function getFiveDays (lat, lon){
+    $.ajax({
+        url: `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=e70a4a2e44d64a3b86dcb3ffc5b9cf15&units=imperial`,
+        type: "GET" ,
+        statusCode: {
+                404: function() {
+                alert( "City not found" );
+                }
+            },
+        dataType: "json",
+        success: function (getFive){
+            console.log(getFive);
+            let forecast = getFive.list
+            for (var i=5; i< getFive.length; i++){
+            var getFive = forecast[i]
+            
+            var weatherTemp = document.createElement("p");
+            weatherTemp.classList = "card-text";
+            weatherTemp.textContent = getFive.list.main.temp + "F";
+
+            $('.weatherFive').append(weatherTemp);
+
+            var weatherHum = document.createElement('p');
+                weatherHum.classList = "card-text";
+                weatherHum.textContent = getFive.list.main.humidity + "%"
+
+                $('.weatherFive').append(weatherHum);
+
+            }
+        }  
+    });
+}
+
 
 
 
