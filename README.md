@@ -2,7 +2,7 @@
 
 
 # Description
-A Server API is a set of protocols and definitions used to integrate and develop software They are very useful when we want to use functions of some service with the intention that users use our application. In this project we tested the [https://openweathermap.org/api]API to create a web page that allows to search the climate, wind speed, and humidity of any city in the world.
+A Server API is a set of protocols and definitions used to integrate and develop software They are very useful when we want to use functions of some service with the intention that users use our application. In this project we tested the [https://openweathermap.org/api] API to create a web page that allows to search the climate, wind speed, and humidity of any city in the world.
 
 # Table of Content
 
