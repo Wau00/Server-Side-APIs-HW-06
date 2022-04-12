@@ -1,13 +1,8 @@
-// Setting Todays and Weekly Days //
+// Setting Todays Date //
 $("#thedate").text(moment().format("M/DD/YYYY"));
-$("#day-forecast").text(moment().add(1, 'day').format("M/DD/YYYY"));
-$("#day-forecast2").text(moment().add(2, 'day').format("M/DD/YYYY"));
-$("#day-forecast3").text(moment().add(3, 'day').format("M/DD/YYYY"));
-$("#day-forecast4").text(moment().add(4, 'day').format("M/DD/YYYY"));
-$("#day-forecast5").text(moment().add(5, 'day').format("M/DD/YYYY"));
 
 
-
+// Calling the Main Function
 
 $(document).ready(function(){
 getHistory()
@@ -29,11 +24,14 @@ $('#submitWeather').click(function(){
                 console.log(data);
                 show(data);
 
+                // Lat and Lon variables setting value from the first API to use them in the second, and third API //
                 var lat = data.coord.lat
                 var lon = data.coord.lon
 
+                // Call for uvIndex //
                 getuvIndex(lat, lon)
 
+                // Call for Week Forecast
                 getFiveDays(lat, lon)
                 
                 $('#button-city').val('');
@@ -48,6 +46,8 @@ $('#submitWeather').click(function(){
     });
 });
 
+// Save History of previous searchs //
+
 function saveCity(value) {
     var storage = JSON.parse(localStorage.getItem('weatherHistory'))
     if (storage === null) {
@@ -57,6 +57,8 @@ function saveCity(value) {
     localStorage.setItem('weatherHistory', JSON.stringify(storage))
     getHistory()
 }
+
+// Local Storage //
 
 function getHistory() {
     var storage = JSON.parse(localStorage.getItem('weatherHistory'))
@@ -74,6 +76,8 @@ function getHistory() {
     }
 }
 
+// Show Cities weather parameters //
+// Adding attributes from the API directly to HTML classes //
 function show(data){
   
     $('.iconWeather').attr('src','') +
@@ -86,6 +90,7 @@ function show(data){
     
 }
 
+// Show City uvIndex from second API //
 function getuvIndex(lat, lon) {
     $.ajax({
         url: `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=e70a4a2e44d64a3b86dcb3ffc5b9cf15&units=imperial`,
@@ -105,6 +110,7 @@ function getuvIndex(lat, lon) {
 
 }
 
+// Deploy 5-Day Forecast with third API //
 function getFiveDays (lat, lon){
     $.ajax({
         url: `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=e70a4a2e44d64a3b86dcb3ffc5b9cf15&units=imperial`,
@@ -141,4 +147,3 @@ function getFiveDays (lat, lon){
 
 
 
-// return "<p><strong>Weather</strong>: "+data.weather[0].main+"</p>" ;//

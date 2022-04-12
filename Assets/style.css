@@ -70,7 +70,7 @@ p{
 }
 /* Week Forecast Tables */
 
-.col{
+.card-text{
     text-align:center;
     background-color: var(--box-color);
     border-left:  6px solid var(--seco-color);
